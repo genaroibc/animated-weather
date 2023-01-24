@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@remotion/cli': 3.3.36
   '@remotion/eslint-config': ^3.0.0
+  '@types/node': ^18.11.18
   '@types/react': ^18.0.26
   '@types/web': ^0.0.86
   autoprefixer: 10.4.4
@@ -27,6 +28,7 @@ dependencies:
 
 devDependencies:
   '@remotion/eslint-config': 3.3.36_7uibuqfxkfaozanbtbziikiqje
+  '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/web': 0.0.86
   autoprefixer: 10.4.4_postcss@8.4.12
@@ -656,7 +658,6 @@ packages:
 
   /@types/node/18.11.18:
     resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
-    dev: false
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
