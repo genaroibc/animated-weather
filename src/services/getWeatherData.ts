@@ -1,4 +1,4 @@
-import { Weather } from '../types';
+import { Weather } from '../types/api-reponse';
 
 const { API_URL, API_KEY } = process.env;
 const ERROR_MESSAGE = 'env variable is not defined';
