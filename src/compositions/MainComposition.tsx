@@ -1,4 +1,4 @@
-import { Sequence, useVideoConfig } from 'remotion';
+import { Sequence, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Clouds } from '../components/Clouds';
 import { Mixed } from '../components/Mixed';
 import { Temperature } from '../components/Temperature';
@@ -10,7 +10,9 @@ import { Weather } from '../types/api-reponse';
 type Props = Weather;
 
 export function MainComposition({ name, main, wind, weather, clouds }: Props) {
-	const { width } = useVideoConfig();
+	const { fps, width } = useVideoConfig();
+	const frame = useCurrentFrame();
+	const scale = spring({ fps, frame });
 
 	return (
 		<div className="w-full">
@@ -23,7 +25,7 @@ export function MainComposition({ name, main, wind, weather, clouds }: Props) {
         `}
 			</style>
 
-			<Sequence>
+			<Sequence style={{ transform: `scale(${scale})` }}>
 				<Title city={name} />
 			</Sequence>
 
