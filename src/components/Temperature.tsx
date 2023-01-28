@@ -5,14 +5,7 @@ import { CompositionLayout } from './shared/CompositionLayout';
 
 type Props = WeatherMain;
 
-export function Temperature({
-	feels_like,
-	humidity,
-	pressure,
-	temp,
-	temp_max,
-	temp_min,
-}: Props) {
+export function Temperature({ feels_like, temp, temp_max, temp_min }: Props) {
 	// const frame = useCurrentFrame();
 	// const { fps } = useVideoConfig();
 
@@ -26,15 +19,16 @@ export function Temperature({
 
 	return (
 		<CompositionLayout>
-			<span>It feels like: {`${feels_like} ${TEMPERATURE_UNIT}`}</span>
-			<span>Humidity level is {humidity}</span>
-			<span>The pressure is {pressure}</span>
+			<h4 className="text-6xl">Temperature</h4>
 
-			<h4>Temperature</h4>
-			<span>The temperature is {temp}</span>
-			<span>
-				The maxium is {temp_max} and the minimum is {temp_min}
-			</span>
+			<span>The temperature is {temp} </span>
+
+			<span>It feels like: {`${feels_like} ${TEMPERATURE_UNIT}`}</span>
+
+			<div className="flex gap-3">
+				<span>Min: {temp_min}</span>
+				<span>Max: {temp_max}</span>
+			</div>
 		</CompositionLayout>
 	);
 }

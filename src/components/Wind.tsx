@@ -16,6 +16,7 @@ type Props = WeatherWind;
 export function Wind({ deg, speed }: Props) {
 	return (
 		<CompositionLayout>
+			<h4 className="text-6xl">Wind</h4>
 			<span>
 				The wind speed is {speed} in {deg} degrees
 			</span>
