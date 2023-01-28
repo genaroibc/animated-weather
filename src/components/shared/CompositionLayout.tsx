@@ -1,4 +1,4 @@
-import { useCurrentFrame } from 'remotion';
+import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { DURATION } from '../../constants';
 
 type Props = {
@@ -7,8 +7,20 @@ type Props = {
 
 export function CompositionLayout({ children }: Props) {
 	const frame = useCurrentFrame();
+	const { height, fps } = useVideoConfig();
 
-	// Const scale = spring({ fps, frame });
+	const entrance = spring({
+		fps,
+		frame,
+		config: {
+			damping: 300,
+		},
+		durationInFrames: 10,
+	});
+
+	const entranceOffset = interpolate(entrance, [0, 1], [height, 0]);
+
+	const wave1 = Math.cos(frame / 15) * 10 + entranceOffset;
 
 	const PROGRESS = frame / DURATION;
 
@@ -20,11 +32,13 @@ export function CompositionLayout({ children }: Props) {
 			style={{
 				opacity: CSS_OP,
 				transform:
-					CSS_OP > 1.6
+					`translateY(${wave1}px)
+        ` +
+					(CSS_OP > 1.6
 						? `translateX(-${200}%)`
 						: CSS_OP > 1.5
 						? `translateX(${10}%)`
-						: '',
+						: ''),
 			}}
 		>
 			{children}
