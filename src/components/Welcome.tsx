@@ -13,7 +13,12 @@ export function Title({ city }: Props) {
 
 	return (
 		<CompositionLayout>
-			<span className="text-6xl animate-bounce">🌤️</span>
+			<span
+				className="text-6xl animate-bounce"
+				style={{ animationDirection: 'alternate' }}
+			>
+				🌤️
+			</span>
 			<p className="text-2xl m-0">This is the climate in</p>
 			<h1
 				className="text-white text-6xl text-center w-full m-0"
