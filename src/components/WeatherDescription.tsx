@@ -13,7 +13,7 @@ export function WeatherDescription({ description, icon, main }: Props) {
 				<div>
 					<h3>{main}</h3>
 					<Img
-						src={`${process.env.NEXT_PUBLIC_ICONS_URL}?icon=${icon}`}
+						src={`${process.env.NEXT_PUBLIC_ICONS_URL}/${icon}.png`}
 						alt=""
 					/>
 				</div>
