@@ -20,7 +20,7 @@ export const RemotionRoot: React.FC = () => {
 			localStorage.setItem('weatherData', JSON.stringify(weatherData));
 			setWeatherData(weatherData);
 
-			return;
+			return continueRender(handle);
 		}
 
 		setWeatherData(persistedWeatherData);
