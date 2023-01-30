@@ -1,6 +1,7 @@
 import { Weather } from '../types/api-reponse';
 
-const { API_URL, API_KEY } = process.env;
+const { NEXT_PUBLIC_API_URL: API_URL, NEXT_PUBLIC_API_KEY: API_KEY } =
+	process.env;
 const ERROR_MESSAGE = 'env variable is not defined';
 
 if (!API_URL) throw new Error(`"API_URL" ${ERROR_MESSAGE}`);
