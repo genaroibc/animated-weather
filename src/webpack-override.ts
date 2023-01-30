@@ -1,4 +1,4 @@
-import {WebpackOverrideFn} from 'remotion';
+import { WebpackOverrideFn } from 'remotion';
 
 export const webpackOverride: WebpackOverrideFn = (currentConfiguration) => {
 	return {
