@@ -1,39 +1,44 @@
 {
-  "name": "animated-weather",
-  "version": "1.0.0",
-  "description": "My Remotion video",
-  "sideEffects": [
-    "*.css"
-  ],
-  "scripts": {
-    "start": "remotion preview",
-    "build": "remotion render MyComp out/video.mp4",
-    "upgrade": "remotion upgrade",
-    "test": "eslint src --ext ts,tsx,js,jsx && tsc"
-  },
-  "repository": {},
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "@remotion/eslint-config": "^3.0.0",
-    "@types/node": "^18.11.18",
-    "@types/react": "^18.0.26",
-    "@types/web": "^0.0.86",
-    "autoprefixer": "10.4.4",
-    "css-loader": "^6.7.1",
-    "eslint": "^8.30.0",
-    "postcss": "8.4.12",
-    "postcss-loader": "6.2.1",
-    "postcss-preset-env": "7.4.3",
-    "prettier": "^2.8.1",
-    "style-loader": "^3.3.1",
-    "tailwindcss": "^3.1.6",
-    "typescript": "^4.9.4"
-  },
-  "dependencies": {
-    "@remotion/cli": "3.3.36",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "remotion": "3.3.36"
-  },
-  "packageManager": "pnpm@7.18.2"
+	"name": "animated-weather",
+	"version": "1.0.0",
+	"description": "A animated-weather video generator.",
+	"sideEffects": [
+		"*.css"
+	],
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"start:remotion": "remotion preview",
+		"build:remotion": "remotion render MyComp out/video.mp4",
+		"upgrade:remotion": "remotion upgrade",
+		"test": "eslint src --ext ts,tsx,js,jsx && tsc"
+	},
+	"repository": {},
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"@remotion/eslint-config": "^3.0.0",
+		"@types/node": "^18.11.18",
+		"@types/react": "^18.0.26",
+		"@types/web": "^0.0.86",
+		"autoprefixer": "10.4.4",
+		"css-loader": "^6.7.1",
+		"eslint": "^8.30.0",
+		"postcss": "8.4.12",
+		"postcss-loader": "6.2.1",
+		"postcss-preset-env": "7.4.3",
+		"prettier": "^2.8.1",
+		"style-loader": "^3.3.1",
+		"tailwindcss": "^3.1.6",
+		"typescript": "^4.9.4"
+	},
+	"dependencies": {
+		"@remotion/cli": "3.3.36",
+		"next": "^13.1.6",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"remotion": "3.3.36"
+	},
+	"packageManager": "pnpm@7.18.2"
 }

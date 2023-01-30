@@ -2,13 +2,21 @@
 	"compilerOptions": {
 		"target": "ES2018",
 		"module": "commonjs",
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"outDir": "./dist",
 		"strict": true,
 		"noEmit": true,
 		"lib": ["es2015"],
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true
-	}
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": true,
+		"incremental": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"baseUrl": "."
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }
