@@ -22,21 +22,26 @@ export function CompositionLayout({ children }: Props) {
 
 	const wave1 = Math.cos(frame / 15) * 10 + entranceOffset;
 
-	const PROGRESS = frame / DURATION;
+	const PROGRESS = (frame / DURATION) * 9;
 
-	const CSS_OP = PROGRESS * 9;
+	const opacity =
+		interpolate(frame, [20, 40], [0, 1], {
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		}) / 0.8;
 
 	return (
 		<div
 			className="flex flex-col justify-center items-center w-full text-2xl gap-12 m-auto font-bold transition-transform duration-1000 ease-out"
 			style={{
-				opacity: CSS_OP,
+				transition: 'opacity .3 ease',
+				opacity: PROGRESS > 1.5 ? Math.asinh(PROGRESS) : opacity,
 				transform:
 					`translateY(${wave1}px)
         ` +
-					(CSS_OP > 1.6
+					(PROGRESS > 1.6
 						? `translateX(-${200}%)`
-						: CSS_OP > 1.5
+						: PROGRESS > 1.5
 						? `translateX(${10}%)`
 						: ''),
 			}}

@@ -6,17 +6,6 @@ import { CompositionLayout } from './shared/CompositionLayout';
 type Props = WeatherMain;
 
 export function Temperature({ feels_like, temp, temp_max, temp_min }: Props) {
-	// const frame = useCurrentFrame();
-	// const { fps } = useVideoConfig();
-
-	// const scale = spring({
-	// 	fps,
-	// 	frame,
-	// });
-	//  style={{
-	// 				// 	transform: `scale(${scale})`,
-	// 				// }}
-
 	return (
 		<CompositionLayout>
 			<h4 className="text-6xl">Temperature</h4>
