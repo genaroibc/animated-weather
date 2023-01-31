@@ -10,8 +10,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"start:remotion": "remotion preview",
-		"build:remotion": "remotion render MyComp out/video.mp4",
+		"start:remotion": "remotion preview ./src/remotion/index.ts",
+		"build:remotion": "remotion render ./src/remotion/index.ts MyComposition out/video.mp4",
 		"upgrade:remotion": "remotion upgrade",
 		"test": "eslint src --ext ts,tsx,js,jsx && tsc"
 	},
@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@remotion/cli": "3.3.36",
+		"@remotion/player": "3.3.36",
 		"next": "^13.1.6",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

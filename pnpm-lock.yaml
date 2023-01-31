@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@remotion/cli': 3.3.36
   '@remotion/eslint-config': ^3.0.0
+  '@remotion/player': ^3.3.36
   '@types/node': ^18.11.18
   '@types/react': ^18.0.26
   '@types/web': ^0.0.86
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   '@remotion/cli': 3.3.36_biqbaboplfbrettd7655fr4n2y
+  '@remotion/player': 3.3.36_biqbaboplfbrettd7655fr4n2y
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
