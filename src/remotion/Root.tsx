@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Composition, continueRender, delayRender } from 'remotion';
 import { MainComposition } from './compositions/MainComposition';
-import { DURATION, FPS } from './constants';
+import {
+	COMPOSITION_HEIGHT,
+	COMPOSITION_WIDTH,
+	DURATION_IN_FRAMES,
+	FPS,
+} from './constants';
 import './styles/index.css';
 import { Weather } from '../types/api-reponse';
 import { getWeatherData } from '../services/getWeatherData';
@@ -39,9 +44,9 @@ export const RemotionRoot: React.FC = () => {
 					component={MainComposition}
 					defaultProps={weatherData}
 					fps={FPS}
-					durationInFrames={DURATION}
-					width={500}
-					height={500}
+					durationInFrames={DURATION_IN_FRAMES}
+					width={COMPOSITION_WIDTH}
+					height={COMPOSITION_HEIGHT}
 				/>
 			)}
 		</>

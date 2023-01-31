@@ -1,5 +1,5 @@
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { DURATION } from '../constants';
+import { DURATION_IN_FRAMES } from '../constants';
 
 type Props = {
 	children: React.ReactNode;
@@ -22,7 +22,7 @@ export function CompositionLayout({ children }: Props) {
 
 	const wave1 = Math.cos(frame / 15) * 10 + entranceOffset;
 
-	const PROGRESS = (frame / DURATION) * 9;
+	const PROGRESS = (frame / DURATION_IN_FRAMES) * 9;
 
 	const opacity =
 		interpolate(frame, [20, 40], [0, 1], {
