@@ -30,6 +30,8 @@ export interface WeatherMain {
 	temp_max: number;
 	pressure: number;
 	humidity: number;
+	sea_level?: number;
+	grnd_level?: number;
 }
 
 export interface WeatherSys {
