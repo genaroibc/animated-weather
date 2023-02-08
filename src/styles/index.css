@@ -40,6 +40,7 @@ body {
 input {
 	padding: 1rem;
 	border-radius: 5px;
+	color: #000;
 }
 
 button {
@@ -47,25 +48,14 @@ button {
 	border-radius: 5px;
 	background-color: #ddd;
 
-	transition: background 0.3s ease, box-shadow 0.3s ease;
+	background-color: var(--secondary-color) !important;
+	transition: filter 0.3s ease, box-shadow 0.3s ease;
+	max-width: fit-content;
 }
 
 button:hover {
+	filter: hue-rotate(-45deg);
 	cursor: pointer;
 
-	background-color: var(--complement-color);
-
 	box-shadow: -5px 5px #0007;
-}
-
-#location-form-divider {
-	font-size: 1.8rem;
-}
-
-#location-form-divider::before {
-	content: '< ';
-}
-
-#location-form-divider::after {
-	content: ' >';
 }
