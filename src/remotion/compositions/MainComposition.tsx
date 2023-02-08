@@ -25,7 +25,8 @@ export function MainComposition({ name, main, wind, weather, clouds }: Props) {
         `}
 			</style>
 
-			<Sequence style={{ transform: `scale(${scale})` }}>
+			{/* eslint-disable-next-line */}
+			<Sequence from={0} style={{ transform: `scale(${scale})` }}>
 				<Title city={name} />
 			</Sequence>
 
