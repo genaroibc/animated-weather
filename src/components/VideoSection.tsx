@@ -1,16 +1,13 @@
 import { WeatherVideoPlayer } from '@/components/WeatherVideoPlayer';
 import { LocationForm } from '@/components/LocationForm';
-import { useUserLocation } from '@/hooks/useUserLocation';
 import { getCoordsByCityName } from '@/services/getCoordsByCityName';
 import { useState } from 'react';
 import { Coordinates } from '@/types/globals';
+import { DetectLocationBtn } from './DetectLocationBtn';
 const LOCATION_INPUT_NAME = 'user-location';
 
 export function VideoSection() {
 	const [userCoords, setUserCoords] = useState<Coordinates | null>(null);
-
-	const { handleLocationRequest, userCoordinates, locationError } =
-		useUserLocation({ isInmediate: false });
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -25,8 +22,6 @@ export function VideoSection() {
 		}
 	};
 
-	console.log({ userCoordinates, locationError });
-
 	return (
 		<>
 			<LocationForm
@@ -36,20 +31,12 @@ export function VideoSection() {
 
 			<p>or</p>
 
-			<button className="mx-auto" type="button" onClick={handleLocationRequest}>
-				Detect my location 🔎
-			</button>
+			<DetectLocationBtn />
 
 			{userCoords ? (
 				<WeatherVideoPlayer locationCoords={userCoords} />
 			) : (
-				<h3>
-					{locationError?.message ? (
-						locationError.message
-					) : (
-						<p className="my-4">Give us a location to render your video...</p>
-					)}
-				</h3>
+				<p className="my-4">Give us a location to render your video...</p>
 			)}
 		</>
 	);
