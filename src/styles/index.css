@@ -32,6 +32,7 @@ body {
 	min-height: 100vh;
 	margin: 0 auto;
 
+	padding: 0 0.8rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -58,4 +59,10 @@ button:hover {
 	cursor: pointer;
 
 	box-shadow: -5px 5px #0007;
+}
+
+@media screen and (max-width: 768px) {
+	:root {
+		font-size: 12px;
+	}
 }
