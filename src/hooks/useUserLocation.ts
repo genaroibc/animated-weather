@@ -1,13 +1,15 @@
+import { Coordinates } from '@/types/globals';
 import { useCallback, useEffect, useState } from 'react';
-
-type UserLocation = { latitude: number; longitude: number };
 
 type Params = {
 	isInmediate: boolean;
 };
 
 export function useUserLocation({ isInmediate }: Params) {
-	const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
+	const [userCoordinates, setUserCoordinates] = useState<Coordinates | null>(
+		null
+	);
+
 	const [locationError, setLocationError] =
 		useState<GeolocationPositionError | null>(null);
 
@@ -15,12 +17,12 @@ export function useUserLocation({ isInmediate }: Params) {
 		const onLocationReqSuccess: PositionCallback = (res) => {
 			const { latitude, longitude } = res.coords;
 
-			setUserLocation({ latitude, longitude });
+			setUserCoordinates({ latitude, longitude });
 			setLocationError(null);
 		};
 
 		const onLocationReqError: PositionErrorCallback = (error) => {
-			setUserLocation(null);
+			setUserCoordinates(null);
 			setLocationError(error);
 		};
 
@@ -36,5 +38,9 @@ export function useUserLocation({ isInmediate }: Params) {
 		}
 	}, [handleLocationRequest, isInmediate]);
 
-	return { userLocation, locationError, handleLocationRequest };
+	return {
+		userCoordinates,
+		locationError,
+		handleLocationRequest,
+	};
 }
