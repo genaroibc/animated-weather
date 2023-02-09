@@ -16,7 +16,9 @@ type Props = {
 };
 
 export function WeatherVideoPlayer({ locationCoords }: Props) {
-	const [weatherData, setWeatherData] = useState<Weather | null>(null);
+	const [weatherData, setWeatherData] = useState<Weather | null>(
+		JSON.parse(localStorage.getItem('weatherData') ?? 'null')
+	);
 
 	useEffect(() => {
 		setWeatherData(null);

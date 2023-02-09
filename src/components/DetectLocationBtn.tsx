@@ -1,8 +1,20 @@
 import { useUserLocation } from '@/hooks/useUserLocation';
+import { Coordinates } from '@/types/globals';
+import { useEffect } from 'react';
 
-export function DetectLocationBtn() {
+type Props = {
+	onCoordinates: (location: Coordinates) => void;
+};
+
+export function DetectLocationBtn({ onCoordinates }: Props) {
 	const { handleLocationRequest, userCoordinates, locationError } =
 		useUserLocation({ isInmediate: false });
+
+	useEffect(() => {
+		if (userCoordinates) {
+			onCoordinates(userCoordinates);
+		}
+	}, [userCoordinates, onCoordinates]);
 
 	console.log({ userCoordinates, locationError });
 
