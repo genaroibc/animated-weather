@@ -5,6 +5,7 @@
 	},
 	"rules": {
 		"camelcase": "off",
-		"capitalized-comments": "off"
+		"capitalized-comments": "off",
+		"react/function-component-definition": "off"
 	}
 }
