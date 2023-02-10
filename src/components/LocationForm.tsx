@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function LocationForm({ onCoordinates }: Props) {
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
 		const form = e.target as HTMLFormElement;
@@ -17,7 +17,13 @@ export function LocationForm({ onCoordinates }: Props) {
 		const userLocation = locationInput?.trim();
 
 		if (userLocation) {
-			getCoordsByCityName(userLocation).then(onCoordinates);
+			const response = await getCoordsByCityName(userLocation);
+
+			if (!response.ok) {
+				return; // To Do: handle error
+			}
+
+			onCoordinates(response.data);
 		}
 	};
 	return (
@@ -30,6 +36,7 @@ export function LocationForm({ onCoordinates }: Props) {
 			</label>
 			<input
 				required
+				className="bg-slate-300"
 				type="text"
 				name={LOCATION_INPUT_NAME}
 				id={LOCATION_INPUT_NAME}
