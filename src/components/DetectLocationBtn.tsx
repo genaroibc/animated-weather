@@ -16,15 +16,13 @@ export function DetectLocationBtn({ onCoordinates }: Props) {
 		}
 	}, [userCoordinates, onCoordinates]);
 
-	console.log({ userCoordinates, locationError });
-
 	return (
 		<>
 			<button className="mx-auto" type="button" onClick={handleLocationRequest}>
 				Detect my location 🔎
 			</button>
 
-			{locationError?.message && <p>locationError.message</p>}
+			{locationError?.message && <p>{locationError.message}</p>}
 		</>
 	);
 }
