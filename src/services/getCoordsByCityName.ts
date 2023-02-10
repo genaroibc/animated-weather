@@ -1,4 +1,4 @@
-import { Coordinates } from '@/types/globals';
+import { Coordinates, KnownError } from '@/types/globals';
 
 const GEOCODER_API_URL = process.env.NEXT_PUBLIC_GEOCODER_API_URL;
 const GEOCODER_API_KEY = process.env.NEXT_PUBLIC_GEOCODER_API_KEY;
@@ -13,10 +13,23 @@ if (!GEOCODER_API_KEY) {
 	throw new Error(`"API_KEY" ${ERROR_MESSAGE} - ` + process.env.API_KEY);
 }
 
-export function getCoordsByCityName(cityName: string): Promise<Coordinates> {
+export async function getCoordsByCityName(
+	cityName: string
+): Promise<{ ok: true; data: Coordinates } | KnownError> {
 	const URL = `${GEOCODER_API_URL}?q=${cityName.trim()}&appid=${GEOCODER_API_KEY}`;
 
-	return fetch(URL)
-		.then((res) => res.json())
-		.then(({ lon, lat }) => ({ longitude: lon, latitude: lat }));
+	try {
+		const response = await fetch(URL);
+		const data = await response.json();
+
+		const { lon, lat } = data[0];
+
+		return { ok: true, data: { longitude: lon, latitude: lat } };
+	} catch (error) {
+		const errorMsg =
+			(error as { message: string }).message ??
+			'There was an error, please try again later';
+
+		return { ok: false, message: errorMsg };
+	}
 }

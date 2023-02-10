@@ -1,4 +1,5 @@
-import { Coordinates } from '@/types/globals';
+import { Coordinates, KnownError } from '@/types/globals';
+import { isWeatherData } from '@/utils/isWeatherData';
 import { Weather } from '../types/api-reponse';
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -14,11 +15,23 @@ if (!API_KEY) {
 	throw new Error(`"API_KEY" ${ERROR_MESSAGE}`);
 }
 
-export function getWeatherData({
+export async function getWeatherData({
 	latitude,
 	longitude,
-}: Coordinates): Promise<Weather> {
+}: Coordinates): Promise<{ ok: true; data: Weather } | KnownError> {
 	const URL = `${API_URL}?appid=${API_KEY}&lat=${latitude}&lon=${longitude}&units=metric`;
 
-	return fetch(URL).then((res) => res.json());
+	try {
+		const response = await fetch(URL);
+
+		const weatherData = await response.json();
+
+		if (isWeatherData(weatherData)) {
+			return { ok: true, data: weatherData };
+		}
+
+		throw response;
+	} catch (error) {
+		return { ok: false, message: 'There was an error, please try again later' };
+	}
 }
