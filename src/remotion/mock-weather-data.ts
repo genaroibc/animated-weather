@@ -1,7 +1,12 @@
-const WEATHER: Weather = {
+export const mockWeatherData = {
 	coord: { lon: -0.1257, lat: 51.5085 },
 	weather: [
-		{ id: 804, main: 'Clouds', description: 'overcast clouds', icon: '04d' },
+		{
+			id: 804,
+			main: 'Clouds',
+			description: 'overcast clouds',
+			icon: '04d',
+		},
 	],
 	base: 'stations',
 	main: {
