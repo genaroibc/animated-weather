@@ -1,4 +1,3 @@
-import { Weather } from '@/types/api-reponse';
 import { Composition } from 'remotion';
 import { MainComposition } from './compositions/MainComposition';
 import {
@@ -7,18 +6,15 @@ import {
 	DURATION_IN_FRAMES,
 	FPS,
 } from './constants';
+import { mockWeatherData } from './mock-weather-data';
 import './styles/index.css';
 
-type Props = {
-	weatherData: Weather;
-};
-
-export function RemotionRoot({ weatherData }: Props) {
+export function RemotionRoot() {
 	return (
 		<Composition
 			id="MyComposition"
 			component={MainComposition}
-			defaultProps={weatherData}
+			defaultProps={mockWeatherData}
 			fps={FPS}
 			durationInFrames={DURATION_IN_FRAMES}
 			width={COMPOSITION_WIDTH}
