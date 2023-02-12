@@ -6,6 +6,7 @@
 	"rules": {
 		"camelcase": "off",
 		"capitalized-comments": "off",
-		"react/function-component-definition": "off"
+		"react/function-component-definition": "off",
+		"@remotion/warn-native-media-tag": "off"
 	}
 }
