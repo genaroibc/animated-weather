@@ -17,10 +17,7 @@ const start = async () => {
 		() => undefined, // onprogress handler
 		{
 			// If you have a Webpack override, make sure to add it here
-			webpackOverride: (config) => ({
-				...config,
-				...webpackOverride,
-			}),
+			webpackOverride: (config) => webpackOverride(config),
 		}
 	);
 	// Parametrize the video by passing arbitrary props to your component.
