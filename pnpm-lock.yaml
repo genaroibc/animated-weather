@@ -1,10 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@remotion/bundler': 3.2.31
   '@remotion/cli': 3.2.31
   '@remotion/eslint-config': 3.2.31
   '@remotion/eslint-plugin': 3.3.36
   '@remotion/player': 3.2.31
+  '@remotion/renderer': 3.2.31
   '@types/node': 18.7.23
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -28,9 +30,11 @@ specifiers:
   webpack: 5.72.0
 
 dependencies:
+  '@remotion/bundler': 3.2.31_biqbaboplfbrettd7655fr4n2y
   '@remotion/cli': 3.2.31_biqbaboplfbrettd7655fr4n2y
   '@remotion/eslint-plugin': 3.3.36_5d257b54dulvjvnqbhxbfq6jda
   '@remotion/player': 3.2.31_biqbaboplfbrettd7655fr4n2y
+  '@remotion/renderer': 3.2.31_biqbaboplfbrettd7655fr4n2y
   axios: 0.27.2
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
