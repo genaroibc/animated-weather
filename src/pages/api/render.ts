@@ -1,4 +1,5 @@
-import { mockWeatherData } from '@/remotion/mock-weather-data';
+import { Weather } from '@/types/api-reponse';
+import { isWeatherData } from '@/utils/isWeatherData';
 import { bundle } from '@remotion/bundler';
 import { getCompositions, renderMedia } from '@remotion/renderer';
 import { NextApiHandler } from 'next';
@@ -6,8 +7,7 @@ import { createReadStream, statSync } from 'node:fs';
 import path from 'node:path';
 import { webpackOverride } from 'webpack-override';
 
-const start = async () => {
-	// The composition you want to render
+const renderVideo = async (weatherData: Weather) => {
 	const compositionId = 'MyComposition';
 	// You only have to do this once, you can reuse the bundle.
 	const entryPath = 'src/remotion/index.ts';
@@ -16,12 +16,10 @@ const start = async () => {
 		path.resolve(entryPath),
 		() => undefined, // onprogress handler
 		{
-			// If you have a Webpack override, make sure to add it here
 			webpackOverride: (config) => webpackOverride(config),
 		}
 	);
-	// Parametrize the video by passing arbitrary props to your component.
-	const inputProps = { ...mockWeatherData };
+	const inputProps = { ...weatherData };
 	// Extract all the compositions you have defined in your project
 	// from the webpack bundle.
 	const comps = await getCompositions(bundleLocation, {
@@ -51,7 +49,19 @@ const start = async () => {
 };
 
 const APIHandler: NextApiHandler = async (req, res) => {
-	await start();
+	const { body } = req;
+
+	const weatherData = JSON.parse(body);
+
+	if (!isWeatherData(weatherData)) {
+		return res.status(400).json({
+			ok: false,
+			error:
+				'Malformed data: the provided body does not matches all the needed fields.',
+		});
+	}
+
+	await renderVideo(weatherData);
 
 	const renderedVideoPath = path.join(process.cwd(), 'out/MyComposition.mp4');
 	const stat = statSync(renderedVideoPath);
