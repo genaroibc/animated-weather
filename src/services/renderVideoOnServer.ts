@@ -1,9 +1,9 @@
 import { Weather } from '@/types/api-reponse';
-import { KnownError } from '@/types/globals';
+import { KnownError, KnownResponse } from '@/types/globals';
 
 export async function renderVideoOnServer(
 	weatherData: Weather
-): Promise<{ ok: true; data: string } | KnownError> {
+): Promise<KnownResponse<string> | KnownError> {
 	try {
 		const response = await fetch('/api/render', {
 			method: 'POST',

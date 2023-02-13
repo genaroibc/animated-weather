@@ -1,4 +1,4 @@
-import { Coordinates, KnownError } from '@/types/globals';
+import { Coordinates, KnownError, KnownResponse } from '@/types/globals';
 import { isWeatherData } from '@/utils/isWeatherData';
 import { Weather } from '../types/api-reponse';
 
@@ -18,7 +18,7 @@ if (!API_KEY) {
 export async function getWeatherData({
 	latitude,
 	longitude,
-}: Coordinates): Promise<{ ok: true; data: Weather } | KnownError> {
+}: Coordinates): Promise<KnownResponse<Weather> | KnownError> {
 	const URL = `${API_URL}?appid=${API_KEY}&lat=${latitude}&lon=${longitude}&units=metric`;
 
 	try {

@@ -4,7 +4,12 @@ export type HideDirection = 'left' | 'right' | 'top' | 'bottom';
 
 export type Coordinates = { latitude: number; longitude: number };
 
-export type KnownError = {
+export interface KnownError {
 	ok: false;
 	message: string;
-};
+}
+
+export interface KnownResponse<T> {
+	ok: true;
+	data: T;
+}
