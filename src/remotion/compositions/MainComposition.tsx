@@ -1,4 +1,4 @@
-import { Sequence, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Series, useVideoConfig } from 'remotion';
 import { Clouds } from '../components/Clouds';
 import { Mixed } from '../components/Mixed';
 import { Temperature } from '../components/Temperature';
@@ -10,9 +10,7 @@ import { Weather } from '../../types/api-reponse';
 type Props = Weather;
 
 export function MainComposition({ name, main, wind, weather, clouds }: Props) {
-	const { fps, width } = useVideoConfig();
-	const frame = useCurrentFrame();
-	const scale = spring({ fps, frame });
+	const { width } = useVideoConfig();
 
 	return (
 		<div className="w-full">
@@ -25,30 +23,31 @@ export function MainComposition({ name, main, wind, weather, clouds }: Props) {
         `}
 			</style>
 
-			{/* eslint-disable-next-line */}
-			<Sequence from={0} style={{ transform: `scale(${scale})` }}>
-				<Title city={name} />
-			</Sequence>
+			<Series>
+				<Series.Sequence durationInFrames={120}>
+					<Title city={name} />
+				</Series.Sequence>
 
-			<Sequence from={120}>
-				<WeatherDescription {...weather[0]} />
-			</Sequence>
+				<Series.Sequence durationInFrames={120}>
+					<WeatherDescription {...weather[0]} />
+				</Series.Sequence>
 
-			<Sequence from={240}>
-				<Temperature {...main} />
-			</Sequence>
+				<Series.Sequence durationInFrames={120}>
+					<Temperature {...main} />
+				</Series.Sequence>
 
-			<Sequence from={360}>
-				<Wind {...wind} />
-			</Sequence>
+				<Series.Sequence durationInFrames={120}>
+					<Wind {...wind} />
+				</Series.Sequence>
 
-			<Sequence from={480}>
-				<Clouds {...clouds} />
-			</Sequence>
+				<Series.Sequence durationInFrames={120}>
+					<Clouds {...clouds} />
+				</Series.Sequence>
 
-			<Sequence from={600}>
-				<Mixed {...main} />
-			</Sequence>
+				<Series.Sequence durationInFrames={120}>
+					<Mixed {...main} />
+				</Series.Sequence>
+			</Series>
 		</div>
 	);
 }
