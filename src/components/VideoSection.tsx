@@ -5,10 +5,23 @@ import { Coordinates } from '@/types/globals';
 import { DetectLocationBtn } from './DetectLocationBtn';
 import { Weather } from '@/types/api-reponse';
 import { getWeatherData } from '@/services/getWeatherData';
+import { RenderedVideo } from './RenderedVideo';
+import { isWeatherData } from '@/utils/isWeatherData';
+import { renderVideoOnServer } from '@/services/renderVideoOnServer';
 
 export function VideoSection() {
 	const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 	const [weatherData, setWeatherData] = useState<Weather | null>(null);
+	const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (isWeatherData(weatherData)) {
+			renderVideoOnServer(weatherData).then((response) => {
+				if (response.ok) setVideoSrc(response.data);
+				// to do: handle error
+			});
+		}
+	}, [weatherData]);
 
 	useEffect(() => {
 		const handleGetAndSetWeatherData = async (coordinates: Coordinates) => {
@@ -67,6 +80,8 @@ export function VideoSection() {
 			{weatherData && <WeatherVideoPlayer weatherData={weatherData} />}
 
 			<p className="my-4">Give us a location to render your video...</p>
+
+			{videoSrc && <RenderedVideo src={videoSrc} />}
 		</>
 	);
 }
