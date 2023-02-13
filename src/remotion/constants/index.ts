@@ -7,3 +7,4 @@ export const COMPOSITION_HEIGHT = 500;
 export const COMPOSITION_WIDTH = 500;
 
 export const TEMPERATURE_UNIT: TemperatureUnit = 'degrees';
+export const TRANSITION_DURATION = 15;
