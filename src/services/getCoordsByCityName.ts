@@ -1,4 +1,6 @@
 import { Coordinates, KnownError, KnownResponse } from '@/types/globals';
+import { isCoordsAPIResponse } from '@/utils/isCoordsAPIResponse';
+import { isEmptyValue } from '@/utils/isEmptyValue';
 
 const GEOCODER_API_URL = process.env.NEXT_PUBLIC_GEOCODER_API_URL;
 const GEOCODER_API_KEY = process.env.NEXT_PUBLIC_GEOCODER_API_KEY;
@@ -21,6 +23,10 @@ export async function getCoordsByCityName(
 	try {
 		const response = await fetch(URL);
 		const data = await response.json();
+
+		if (isEmptyValue(data) || !isCoordsAPIResponse(data[0])) {
+			return { ok: false, message: 'Location not found' };
+		}
 
 		const { lon, lat } = data[0];
 

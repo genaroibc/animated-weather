@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { getCoordsByCityName } from '@/services/getCoordsByCityName';
 import { Coordinates } from '@/types/globals';
 
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export function LocationForm({ onCoordinates }: Props) {
+	const [error, setError] = useState<string | null>(null);
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -20,9 +23,11 @@ export function LocationForm({ onCoordinates }: Props) {
 			const response = await getCoordsByCityName(userLocation);
 
 			if (!response.ok) {
-				return; // To Do: handle error
+				setError(response.message);
+				return;
 			}
 
+			setError(null);
 			onCoordinates(response.data);
 		}
 	};
@@ -46,6 +51,8 @@ export function LocationForm({ onCoordinates }: Props) {
 			<button type="submit" className="w-full max-w-none">
 				Submit
 			</button>
+
+			{error && <p className="text-red-500">{error}</p>}
 		</form>
 	);
 }

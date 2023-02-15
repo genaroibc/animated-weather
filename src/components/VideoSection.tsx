@@ -12,6 +12,8 @@ import { getWeatherData } from '@/services/getWeatherData';
 export function VideoSection() {
 	const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 	const [weatherData, setWeatherData] = useState<Weather | null>(null);
+	const [error, setError] = useState<string | null>(null);
+
 	// const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
 	// useEffect(() => {
@@ -28,9 +30,11 @@ export function VideoSection() {
 			const weatherData = await getWeatherData(coordinates);
 
 			if (!weatherData.ok) {
-				return; // To Do: handle error for example with a toast notification
+				setError(weatherData.message);
+				return;
 			}
 
+			setError(null);
 			setWeatherData(weatherData.data);
 			localStorage.setItem('weatherData', JSON.stringify(weatherData.data));
 		};
@@ -78,7 +82,9 @@ export function VideoSection() {
 			</div>
 
 			<div className="flex flex-col">
-				{weatherData ? (
+				{error ? (
+					<p className="text-red-500">{error}</p>
+				) : weatherData ? (
 					<WeatherVideoPlayer weatherData={weatherData} />
 				) : (
 					<p className="my-4">Give us a location to render your video...</p>
