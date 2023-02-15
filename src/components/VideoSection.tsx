@@ -3,17 +3,14 @@ import { LocationForm } from '@/components/LocationForm';
 import { useEffect, useState } from 'react';
 import { Coordinates } from '@/types/globals';
 import { DetectLocationBtn } from './DetectLocationBtn';
-import { Weather } from '@/types/api-reponse';
-import { getWeatherData } from '@/services/getWeatherData';
+import { useWeather } from '@/hooks/useWeather';
 // import { RenderedVideo } from './RenderedVideo';
 // import { isWeatherData } from '@/utils/isWeatherData';
 // import { renderVideoOnServer } from '@/services/renderVideoOnServer';
 
 export function VideoSection() {
 	const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
-	const [weatherData, setWeatherData] = useState<Weather | null>(null);
-	const [error, setError] = useState<string | null>(null);
-
+	const { error, weatherData, loading, handleGetWeather } = useWeather();
 	// const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
 	// useEffect(() => {
@@ -26,52 +23,8 @@ export function VideoSection() {
 	// }, [weatherData]);
 
 	useEffect(() => {
-		const handleGetAndSetWeatherData = async (coordinates: Coordinates) => {
-			const weatherData = await getWeatherData(coordinates);
-
-			if (!weatherData.ok) {
-				setError(weatherData.message);
-				return;
-			}
-
-			setError(null);
-			setWeatherData(weatherData.data);
-			localStorage.setItem('weatherData', JSON.stringify(weatherData.data));
-		};
-
-		const handleWeatherUpdate = async () => {
-			const persistedWeatherData = JSON.parse(
-				localStorage.getItem('weatherData') ?? 'null'
-			);
-
-			if (!persistedWeatherData && coordinates) {
-				handleGetAndSetWeatherData(coordinates);
-				return;
-			}
-
-			// the requested data may be already saved
-			if (persistedWeatherData && coordinates) {
-				const { lat: persistedLatitude, lon: persistedLongitude } =
-					persistedWeatherData.coord ?? {};
-
-				const { latitude, longitude } = coordinates;
-
-				const isSameWeatherData =
-					persistedLatitude === latitude && persistedLongitude === longitude;
-
-				if (!isSameWeatherData) {
-					handleGetAndSetWeatherData(coordinates);
-					return;
-				}
-
-				setWeatherData(persistedWeatherData);
-			}
-
-			setWeatherData(persistedWeatherData);
-		};
-
-		handleWeatherUpdate();
-	}, [coordinates]);
+		if (coordinates) handleGetWeather(coordinates);
+	}, [coordinates, handleGetWeather]);
 
 	return (
 		<div className="flex gap-4 flex-col lg:flex-row items-center justify-center bg-zinc-900 p-4">
@@ -80,6 +33,8 @@ export function VideoSection() {
 				<p>or</p>
 				<DetectLocationBtn onCoordinates={setCoordinates} />
 			</div>
+
+			{loading && <p>Loading....</p>}
 
 			<div className="flex flex-col">
 				{error ? (
