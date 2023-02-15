@@ -14,9 +14,12 @@ type Props = {
 
 export function WeatherVideoPlayer({ weatherData }: Props) {
 	return (
-		<div className="text-center max-w-max mx-auto flex justify-center items-center p-4 rounded-md">
+		<div className="text-center mx-auto flex justify-center items-center p-4 rounded-md">
 			<Player
 				controls
+				autoPlay
+				doubleClickToFullscreen
+				initiallyShowControls
 				component={MainComposition}
 				compositionHeight={COMPOSITION_HEIGHT}
 				compositionWidth={COMPOSITION_WIDTH}

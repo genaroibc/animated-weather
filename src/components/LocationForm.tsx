@@ -33,7 +33,7 @@ export function LocationForm({ onCoordinates }: Props) {
 	};
 	return (
 		<form
-			className="flex flex-col gap-4 justify-center rounded-md p-4 mx-auto my-0"
+			className="w-full flex flex-col gap-4 justify-center rounded-md p-4 mx-auto my-0"
 			onSubmit={handleSubmit}
 		>
 			<label className="text-lg" htmlFor={LOCATION_INPUT_NAME}>
