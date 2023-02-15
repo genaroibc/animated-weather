@@ -17,12 +17,18 @@ export function DetectLocationBtn({ onCoordinates }: Props) {
 	}, [userCoordinates, onCoordinates]);
 
 	return (
-		<>
-			<button className="mx-auto" type="button" onClick={handleLocationRequest}>
+		<div className="flex flex-col p-4 gap-4">
+			<button
+				className="mx-auto w-full"
+				type="button"
+				onClick={handleLocationRequest}
+			>
 				Detect my location 🔎
 			</button>
 
-			{locationError?.message && <p>{locationError.message}</p>}
-		</>
+			{locationError?.message && (
+				<p className="text-red-500">{locationError.message}</p>
+			)}
+		</div>
 	);
 }

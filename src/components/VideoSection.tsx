@@ -70,18 +70,22 @@ export function VideoSection() {
 	}, [coordinates]);
 
 	return (
-		<>
-			<LocationForm onCoordinates={setCoordinates} />
+		<div className="flex gap-4 flex-col sm:flex-row items-center justify-center bg-zinc-900 p-4">
+			<div className="flex flex-col gap-4">
+				<LocationForm onCoordinates={setCoordinates} />
+				<p>or</p>
+				<DetectLocationBtn onCoordinates={setCoordinates} />
+			</div>
 
-			<p>or</p>
-
-			<DetectLocationBtn onCoordinates={setCoordinates} />
-
-			{weatherData && <WeatherVideoPlayer weatherData={weatherData} />}
-
-			<p className="my-4">Give us a location to render your video...</p>
+			<div className="flex flex-col">
+				{weatherData ? (
+					<WeatherVideoPlayer weatherData={weatherData} />
+				) : (
+					<p className="my-4">Give us a location to render your video...</p>
+				)}
+			</div>
 
 			{/* {videoSrc && <RenderedVideo src={videoSrc} />} */}
-		</>
+		</div>
 	);
 }
