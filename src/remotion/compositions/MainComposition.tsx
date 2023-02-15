@@ -9,7 +9,14 @@ import { Weather } from '../../types/api-reponse';
 
 type Props = Weather;
 
-export function MainComposition({ name, main, wind, weather, clouds }: Props) {
+export function MainComposition({
+	name,
+	main,
+	wind,
+	weather,
+	clouds,
+	sys,
+}: Props) {
 	const { width } = useVideoConfig();
 
 	return (
@@ -25,7 +32,7 @@ export function MainComposition({ name, main, wind, weather, clouds }: Props) {
 
 			<Series>
 				<Series.Sequence durationInFrames={120}>
-					<Title city={name} />
+					<Title countryCode={sys.country} city={name} />
 				</Series.Sequence>
 
 				<Series.Sequence durationInFrames={120}>

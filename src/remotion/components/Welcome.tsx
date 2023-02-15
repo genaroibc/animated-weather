@@ -1,15 +1,18 @@
-import { interpolate } from 'remotion';
+import { isEmptyValue } from '../../utils/isEmptyValue';
+import { Img, interpolate } from 'remotion';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Weather } from '../../types/api-reponse';
 import { CompositionLayout } from '../components/CompositionLayout';
+import { TRANSITION_DURATION } from '../constants';
 
 type Props = {
 	city: Weather['name'];
+	countryCode: string;
 };
 
-export function Title({ city }: Props) {
+export function Title({ city, countryCode }: Props) {
 	const frame = useCurrentFrame();
-	const { fps } = useVideoConfig();
+	const { fps, width } = useVideoConfig();
 	const scale = spring({ fps, frame });
 	const scale2 = spring({
 		fps,
@@ -29,6 +32,13 @@ export function Title({ city }: Props) {
 		fps,
 	});
 
+	const spr = spring({
+		fps,
+		frame,
+		config: { damping: 400 },
+		durationInFrames: TRANSITION_DURATION,
+	});
+
 	return (
 		<CompositionLayout>
 			<span
@@ -46,10 +56,28 @@ export function Title({ city }: Props) {
 				This is the climate in
 			</p>
 			<h1
-				className="text-white text-6xl text-center w-full m-0"
-				style={{ transform: `scale(${scale})` }}
+				className="flex justify-center gap-8 text-white text-6xl text-center w-full m-0 mx-auto"
+				style={{
+					transform: `scale(${scale})`,
+				}}
 			>
 				{city}
+				{!isEmptyValue(countryCode) && (
+					<Img
+						alt=""
+						className="self-center scale-150 -z-10"
+						style={{
+							transform: `translateX(${interpolate(
+								spr,
+								[0, 1],
+								[-width * 1.5, 0]
+							)}px) scale(1.8)`,
+						}}
+						src={`${
+							process.env.NEXT_PUBLIC_FLAGS_URL
+						}/${countryCode?.toLowerCase()}.png`}
+					/>
+				)}
 			</h1>
 		</CompositionLayout>
 	);
