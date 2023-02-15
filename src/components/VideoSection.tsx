@@ -10,7 +10,9 @@ import { useWeather } from '@/hooks/useWeather';
 
 export function VideoSection() {
 	const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
-	const { error, weatherData, loading, handleGetWeather } = useWeather();
+	const { error, weatherData, loading, handleGetWeather } = useWeather({
+		isInmediate: true,
+	});
 	// const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
 	// useEffect(() => {
@@ -42,7 +44,9 @@ export function VideoSection() {
 				) : weatherData ? (
 					<WeatherVideoPlayer weatherData={weatherData} />
 				) : (
-					<p className="my-4">Give us a location to render your video...</p>
+					<p className="m-0 p-0 min-w-[500px] grid place-content-center min-h-[500px]">
+						Give us a location to render your video...
+					</p>
 				)}
 			</div>
 

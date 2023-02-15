@@ -1,9 +1,13 @@
 import { getWeatherData } from '@/services/getWeatherData';
 import { Weather } from '@/types/api-reponse';
 import { Coordinates } from '@/types/globals';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-export function useWeather() {
+type Params = {
+	isInmediate: boolean;
+};
+
+export function useWeather({ isInmediate }: Params) {
 	const [weatherData, setWeatherData] = useState<Weather | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
@@ -60,6 +64,12 @@ export function useWeather() {
 		},
 		[handleWeatherRequest]
 	);
+
+	useEffect(() => {
+		if (isInmediate) {
+			handleGetWeather({ longitude: 0, latitude: 0 });
+		}
+	}, [isInmediate, handleGetWeather]);
 
 	return { error, loading, weatherData, handleGetWeather };
 }

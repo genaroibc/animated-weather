@@ -14,7 +14,7 @@ type Props = {
 
 export function WeatherVideoPlayer({ weatherData }: Props) {
 	return (
-		<div className="text-center mx-auto flex justify-center items-center p-4 rounded-md">
+		<div className="m-0 p-0 text-center mx-auto flex justify-center items-center rounded-md">
 			<Player
 				controls
 				autoPlay
