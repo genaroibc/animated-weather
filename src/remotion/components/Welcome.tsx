@@ -40,7 +40,7 @@ export function Title({ city, countryCode }: Props) {
 	});
 
 	return (
-		<CompositionLayout from="top" to="bottom">
+		<CompositionLayout from="right" to="left">
 			<span
 				style={{
 					transform: `scale(${scale2})`,
