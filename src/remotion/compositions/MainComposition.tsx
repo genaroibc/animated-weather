@@ -1,4 +1,10 @@
-import { Series, useVideoConfig } from 'remotion';
+import {
+	Audio,
+	interpolate,
+	Series,
+	staticFile,
+	useVideoConfig,
+} from 'remotion';
 import { Clouds } from '../components/Clouds';
 import { Mixed } from '../components/Mixed';
 import { Temperature } from '../components/Temperature';
@@ -17,10 +23,16 @@ export function MainComposition({
 	clouds,
 	sys,
 }: Props) {
-	const { width } = useVideoConfig();
+	const { width, fps } = useVideoConfig();
 
 	return (
 		<div className="w-full">
+			<Audio
+				src={staticFile('audio/background-loop-melodic-techno.mp3')}
+				volume={(f) =>
+					interpolate(f, [0, fps], [0, 1], { extrapolateLeft: 'clamp' })
+				}
+			/>
 			<style>
 				{`
            :root {
