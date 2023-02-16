@@ -7,7 +7,7 @@ type Props = WeatherItem;
 
 export function WeatherDescription({ description, icon, main }: Props) {
 	return (
-		<CompositionLayout to="bottom" title="Status">
+		<CompositionLayout from="top" to="bottom" title="Status">
 			<div className="flex flex-col justify-center items-center gap-3 p-3 rounded">
 				<div>
 					<h3>{main}</h3>

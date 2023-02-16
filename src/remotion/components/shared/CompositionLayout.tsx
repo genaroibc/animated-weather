@@ -1,4 +1,4 @@
-import { Direction, HideDirection } from '@/types/globals';
+import { Direction } from '@/types/globals';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -12,10 +12,11 @@ import { EnterInView } from './EnterInView';
 type Props = {
 	children: React.ReactNode;
 	title?: string;
-	to: HideDirection;
+	from: Direction;
+	to: Direction;
 };
 
-export function CompositionLayout({ children, title, to }: Props) {
+export function CompositionLayout({ children, from, to, title }: Props) {
 	const frame = useCurrentFrame();
 	const { fps, durationInFrames, width } = useVideoConfig();
 
@@ -39,7 +40,7 @@ export function CompositionLayout({ children, title, to }: Props) {
 				transform: transforms[to],
 			}}
 		>
-			<EnterInView from="right" title={title}>
+			<EnterInView from={from} title={title}>
 				{children}
 			</EnterInView>
 		</AbsoluteFill>
