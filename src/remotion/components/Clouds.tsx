@@ -21,9 +21,7 @@ type Props = WeatherClouds;
 
 export function Clouds({ all: cloudiness }: Props) {
 	return (
-		<CompositionLayout>
-			<h2 className="text-6xl">Clouds</h2>
-
+		<CompositionLayout title="Clouds">
 			<span>Percentage of cloudiness: {cloudiness}%</span>
 			<span className="text-xl">{getCloudinessMessage(cloudiness)}</span>
 		</CompositionLayout>

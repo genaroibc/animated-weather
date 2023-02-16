@@ -20,8 +20,7 @@ export function Wind({ deg, speed }: Props) {
 	const scale = spring({ fps, frame });
 
 	return (
-		<CompositionLayout>
-			<h4 className="text-6xl">Wind</h4>
+		<CompositionLayout title="Wind">
 			<span>
 				The wind speed is {speed} in {deg} degrees
 			</span>

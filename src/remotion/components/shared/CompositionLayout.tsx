@@ -10,9 +10,10 @@ import { EnterInView } from './EnterInView';
 
 type Props = {
 	children: React.ReactNode;
+	title?: string;
 };
 
-export function CompositionLayout({ children }: Props) {
+export function CompositionLayout({ children, title }: Props) {
 	const frame = useCurrentFrame();
 	const { fps, durationInFrames, width } = useVideoConfig();
 
@@ -29,7 +30,7 @@ export function CompositionLayout({ children }: Props) {
 				transform: `translateX(${interpolate(spr, [0, 1], [0, -width])}px)`,
 			}}
 		>
-			<EnterInView>{children}</EnterInView>
+			<EnterInView title={title}>{children}</EnterInView>
 		</AbsoluteFill>
 	);
 }

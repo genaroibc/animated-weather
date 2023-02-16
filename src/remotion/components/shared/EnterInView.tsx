@@ -6,12 +6,14 @@ import {
 	useVideoConfig,
 } from 'remotion';
 import { TRANSITION_DURATION } from '../../constants';
+import { Bubble } from './Bubble';
 
 type Props = {
 	children: React.ReactNode;
+	title?: string;
 };
 
-export function EnterInView({ children }: Props) {
+export function EnterInView({ children, title }: Props) {
 	const frame = useCurrentFrame();
 	const { fps, width } = useVideoConfig();
 
@@ -29,6 +31,11 @@ export function EnterInView({ children }: Props) {
 				transform: `translateX(${interpolate(spr, [0, 1], [width, 0])}px)`,
 			}}
 		>
+			{title?.trim() && (
+				<Bubble>
+					<h2 className="text-6xl">{title.trim()}</h2>
+				</Bubble>
+			)}
 			{children}
 		</AbsoluteFill>
 	);
