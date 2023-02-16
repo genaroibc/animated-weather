@@ -67,6 +67,10 @@ button:disabled {
 	cursor: not-allowed;
 }
 
+a:hover {
+	text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
 	:root {
 		font-size: 12px;
