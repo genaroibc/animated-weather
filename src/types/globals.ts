@@ -13,3 +13,5 @@ export interface KnownResponse<T> {
 	ok: true;
 	data: T;
 }
+
+export type Direction = 'left' | 'right' | 'top' | 'bottom';

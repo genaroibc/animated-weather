@@ -1,3 +1,4 @@
+import { Direction } from '@/types/globals';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -11,9 +12,10 @@ import { Bubble } from './Bubble';
 type Props = {
 	children: React.ReactNode;
 	title?: string;
+	from: Direction;
 };
 
-export function EnterInView({ children, title }: Props) {
+export function EnterInView({ children, title, from }: Props) {
 	const frame = useCurrentFrame();
 	const { fps, width } = useVideoConfig();
 
@@ -24,11 +26,18 @@ export function EnterInView({ children, title }: Props) {
 		durationInFrames: TRANSITION_DURATION,
 	});
 
+	const transforms: Record<Direction, string> = {
+		top: `translateY(${interpolate(spr, [0, 1], [-width, 0])}px)`,
+		bottom: `translateY(${interpolate(spr, [0, 1], [width, 0])}px)`,
+		left: `translateX(${interpolate(spr, [0, 1], [-width, 0])}px)`,
+		right: `translateX(${interpolate(spr, [0, 1], [width, 0])}px)`,
+	};
+
 	return (
 		<AbsoluteFill
 			className="justify-center items-center w-full text-2xl gap-12 m-auto font-bold"
 			style={{
-				transform: `translateX(${interpolate(spr, [0, 1], [width, 0])}px)`,
+				transform: transforms[from],
 			}}
 		>
 			{title?.trim() && (

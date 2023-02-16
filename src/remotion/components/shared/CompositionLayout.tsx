@@ -30,7 +30,9 @@ export function CompositionLayout({ children, title }: Props) {
 				transform: `translateX(${interpolate(spr, [0, 1], [0, -width])}px)`,
 			}}
 		>
-			<EnterInView title={title}>{children}</EnterInView>
+			<EnterInView from="right" title={title}>
+				{children}
+			</EnterInView>
 		</AbsoluteFill>
 	);
 }
