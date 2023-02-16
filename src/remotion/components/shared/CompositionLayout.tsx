@@ -1,3 +1,4 @@
+import { Direction, HideDirection } from '@/types/globals';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -11,9 +12,10 @@ import { EnterInView } from './EnterInView';
 type Props = {
 	children: React.ReactNode;
 	title?: string;
+	to: HideDirection;
 };
 
-export function CompositionLayout({ children, title }: Props) {
+export function CompositionLayout({ children, title, to }: Props) {
 	const frame = useCurrentFrame();
 	const { fps, durationInFrames, width } = useVideoConfig();
 
@@ -24,10 +26,17 @@ export function CompositionLayout({ children, title }: Props) {
 		durationInFrames: TRANSITION_DURATION,
 	});
 
+	const transforms: Record<Direction, string> = {
+		top: `translateY(${interpolate(spr, [0, 1], [0, -width])}px)`,
+		bottom: `translateY(${interpolate(spr, [0, 1], [0, width])}px)`,
+		left: `translateX(${interpolate(spr, [0, 1], [0, -width])}px)`,
+		right: `translateX(${interpolate(spr, [0, 1], [0, width])}px)`,
+	};
+
 	return (
 		<AbsoluteFill
 			style={{
-				transform: `translateX(${interpolate(spr, [0, 1], [0, -width])}px)`,
+				transform: transforms[to],
 			}}
 		>
 			<EnterInView from="right" title={title}>

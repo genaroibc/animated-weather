@@ -6,7 +6,7 @@ type Props = WeatherMain;
 
 export function Temperature({ feels_like, temp, temp_max, temp_min }: Props) {
 	return (
-		<CompositionLayout title="Temperature">
+		<CompositionLayout to="bottom" title="Temperature">
 			<span>The temperature is {temp} </span>
 
 			<span>It feels like: {`${feels_like} ${TEMPERATURE_UNIT}`}</span>

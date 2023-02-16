@@ -5,7 +5,7 @@ type Props = WeatherMain;
 
 export function Mixed({ humidity, pressure, grnd_level, sea_level }: Props) {
 	return (
-		<CompositionLayout title="Mixed">
+		<CompositionLayout to="bottom" title="Mixed">
 			<span>Humidity: {humidity}</span>
 			<span>Pressure: {pressure}</span>
 

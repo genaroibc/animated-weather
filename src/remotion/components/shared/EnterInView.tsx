@@ -35,17 +35,18 @@ export function EnterInView({ children, title, from }: Props) {
 
 	return (
 		<AbsoluteFill
-			className="justify-center items-center w-full text-2xl gap-12 m-auto font-bold"
 			style={{
 				transform: transforms[from],
 			}}
 		>
-			{title?.trim() && (
-				<Bubble>
-					<h2 className="text-6xl">{title.trim()}</h2>
-				</Bubble>
-			)}
-			{children}
+			<div className="flex flex-col justify-center items-center w-full text-2xl gap-12 m-auto font-bold">
+				{title?.trim() && (
+					<Bubble>
+						<h2 className="text-6xl">{title.trim()}</h2>
+					</Bubble>
+				)}
+				{children}
+			</div>
 		</AbsoluteFill>
 	);
 }
