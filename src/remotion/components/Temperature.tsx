@@ -1,6 +1,6 @@
 import { TEMPERATURE_UNIT } from '../constants';
 import { WeatherMain } from '../../types/api-reponse';
-import { CompositionLayout } from '../components/CompositionLayout';
+import { CompositionLayout } from './shared/CompositionLayout';
 
 type Props = WeatherMain;
 

@@ -5,7 +5,7 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import { TRANSITION_DURATION } from '../constants';
+import { TRANSITION_DURATION } from '../../constants';
 
 type Props = {
 	children: React.ReactNode;

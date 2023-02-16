@@ -1,6 +1,6 @@
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { WeatherWind } from '../../types/api-reponse';
-import { CompositionLayout } from '../components/CompositionLayout';
+import { CompositionLayout } from './shared/CompositionLayout';
 
 const getWindSpeedMessage = (speed: number) => {
 	if (speed < 1) {

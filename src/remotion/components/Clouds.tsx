@@ -1,5 +1,5 @@
 import { WeatherClouds } from '../../types/api-reponse';
-import { CompositionLayout } from '../components/CompositionLayout';
+import { CompositionLayout } from './shared/CompositionLayout';
 
 const getCloudinessMessage = (cloudiness: number) => {
 	if (cloudiness < 10) {

@@ -2,7 +2,7 @@ import { isEmptyValue } from '../../utils/isEmptyValue';
 import { Img, interpolate } from 'remotion';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Weather } from '../../types/api-reponse';
-import { CompositionLayout } from '../components/CompositionLayout';
+import { CompositionLayout } from './shared/CompositionLayout';
 import { TRANSITION_DURATION } from '../constants';
 
 type Props = {

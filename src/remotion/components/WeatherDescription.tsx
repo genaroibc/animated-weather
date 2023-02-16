@@ -1,6 +1,6 @@
 import { Img } from 'remotion';
 import { WeatherItem } from '../../types/api-reponse';
-import { CompositionLayout } from './CompositionLayout';
+import { CompositionLayout } from './shared/CompositionLayout';
 
 type Props = WeatherItem;
 
