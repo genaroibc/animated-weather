@@ -2,7 +2,7 @@ import { TEMPERATURE_UNIT } from '../constants';
 import { WeatherMain } from '../../types/api-reponse';
 import { CompositionLayout } from './shared/CompositionLayout';
 import { useCurrentFrame } from 'remotion';
-import { ColdText } from './shared/ColdText';
+import { TemperatureText } from './shared/TemperatureText';
 
 type Props = WeatherMain;
 
@@ -18,7 +18,7 @@ export function Temperature({ feels_like, temp, temp_max, temp_min }: Props) {
 			>
 				The temperature is{' '}
 				<span className="text-4xl">
-					<ColdText degrees={temp} content={String(temp)} />
+					<TemperatureText degrees={temp} content={String(temp)} />
 				</span>{' '}
 				<span>{TEMPERATURE_UNIT}</span>
 			</span>

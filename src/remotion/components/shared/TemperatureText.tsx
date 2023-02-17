@@ -3,7 +3,7 @@ type Props = {
 	degrees: number;
 };
 
-export function ColdText({ content, degrees }: Props) {
+export function TemperatureText({ content, degrees }: Props) {
 	return (
 		<span
 			style={{
