@@ -76,3 +76,48 @@ a:hover {
 		font-size: 12px;
 	}
 }
+
+.cold {
+	background: url(/fire.jpg);
+	-webkit-background-clip: text;
+	background-clip: text;
+	line-height: 1;
+	background-size: contain;
+	color: transparent;
+	position: relative;
+}
+
+.cold::before {
+	content: attr(data-heading);
+
+	width: 100%;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	background: linear-gradient(
+		45deg,
+		rgba(255, 255, 255, 0) 45%,
+		rgba(255, 255, 255, 0.8) 50%,
+		rgba(255, 255, 255, 0) 55%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	background-size: 200%;
+	background-position: -100%;
+	mix-blend-mode: screen;
+	color: transparent;
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	animation: bgAppear 2s infinite;
+
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2), -2px 2px 10px rgba(0, 0, 0, 0.2),
+		-2px -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes bgAppear {
+	to {
+		background-position: 100%;
+	}
+}
