@@ -2,7 +2,7 @@ import { TEMPERATURE_UNIT } from '../constants';
 import { WeatherMain } from '../../types/api-reponse';
 import { CompositionLayout } from './shared/CompositionLayout';
 import { useCurrentFrame } from 'remotion';
-import { TemperatureText } from './shared/TemperatureText';
+import { TemperatureText } from './shared/TemperatureText/TemperatureText';
 
 type Props = WeatherMain;
 

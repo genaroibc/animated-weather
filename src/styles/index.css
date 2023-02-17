@@ -76,26 +76,3 @@ a:hover {
 		font-size: 12px;
 	}
 }
-
-.cold {
-	background: url(/fire.jpg);
-	line-height: 1;
-	background-size: contain;
-	color: transparent;
-	position: relative;
-}
-
-.cold::before {
-	content: attr(data-heading);
-
-	width: 100%;
-
-	position: absolute;
-	left: 0;
-	top: 0;
-
-	background-size: 200%;
-	background-position: -100%;
-	mix-blend-mode: screen;
-	color: transparent;
-}

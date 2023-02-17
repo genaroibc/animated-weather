@@ -1,0 +1,24 @@
+.temperatureText {
+	position: relative;
+
+	background: url(/img/fire.jpg);
+	background-size: contain;
+	color: transparent;
+
+	line-height: 1;
+}
+
+.temperatureText::before {
+	content: attr(data-heading);
+
+	width: 100%;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	background-size: 200%;
+	background-position: -100%;
+	mix-blend-mode: screen;
+	color: transparent;
+}
