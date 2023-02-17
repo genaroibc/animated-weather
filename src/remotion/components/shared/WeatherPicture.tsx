@@ -4,7 +4,6 @@ import {
 	Img,
 	interpolate,
 	spring,
-	staticFile,
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
@@ -37,7 +36,7 @@ export function WeatherPicture({ src }: Props) {
 					spr,
 					[0, 1],
 					[width, 0]
-				)}px) translateY(${wave}px) rotate(${frame}deg) scale(2)`,
+				)}px) translateY(${wave}px) scale(2)`,
 			}}
 			src={src}
 			alt=""

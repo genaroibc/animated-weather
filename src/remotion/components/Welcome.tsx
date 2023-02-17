@@ -43,11 +43,11 @@ export function Title({ city, countryCode }: Props) {
 		<CompositionLayout from="right" to="left">
 			<span
 				style={{
-					transform: `scale(${scale2})`,
+					transform: `scale(${scale2})  rotate(${frame * 2}deg)`,
 				}}
 				className="text-6xl"
 			>
-				🌤️
+				☀️
 			</span>
 			<p
 				style={{ marginTop: interpolate(driver, [0, 1], [200, 0]) }}
