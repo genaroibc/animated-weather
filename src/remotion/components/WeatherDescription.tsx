@@ -1,4 +1,3 @@
-import { Img } from 'remotion';
 import { WeatherItem } from '../../types/api-reponse';
 import { CompositionLayout } from './shared/CompositionLayout';
 import { WeatherPicture } from './shared/WeatherPicture';
@@ -11,11 +10,9 @@ export function WeatherDescription({ description, icon, main }: Props) {
 			<div className="flex flex-col justify-center items-center gap-3 p-3 rounded">
 				<div>
 					<h3>{main}</h3>
-					<Img
+					<WeatherPicture
 						src={`${process.env.NEXT_PUBLIC_ICONS_URL}/${icon}.png`}
-						alt=""
 					/>
-					<WeatherPicture />
 				</div>
 				<p>{description}</p>
 			</div>

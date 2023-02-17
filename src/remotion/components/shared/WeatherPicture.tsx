@@ -9,7 +9,11 @@ import {
 	useVideoConfig,
 } from 'remotion';
 
-export function WeatherPicture() {
+type Props = {
+	src: string;
+};
+
+export function WeatherPicture({ src }: Props) {
 	const frame = useCurrentFrame();
 	const { fps, width } = useVideoConfig();
 
@@ -33,9 +37,9 @@ export function WeatherPicture() {
 					spr,
 					[0, 1],
 					[width, 0]
-				)}px) translateY(${wave}px) rotate(${frame}deg)`,
+				)}px) translateY(${wave}px) rotate(${frame}deg) scale(2)`,
 			}}
-			src={staticFile('/svg/sun.jpeg')}
+			src={src}
 			alt=""
 		/>
 	);
