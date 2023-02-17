@@ -26,7 +26,7 @@ export function MainComposition({
 	const { width, fps } = useVideoConfig();
 
 	return (
-		<div className="w-full">
+		<div className="w-full bg-zinc-900">
 			<Audio
 				src={staticFile('audio/background-loop-melodic-techno.mp3')}
 				volume={(f) =>
