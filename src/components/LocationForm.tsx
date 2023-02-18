@@ -6,9 +6,10 @@ const LOCATION_INPUT_NAME = 'user-location';
 
 type Props = {
 	onCoordinates: (location: Coordinates) => void;
+	isDisabled: boolean;
 };
 
-export function LocationForm({ onCoordinates }: Props) {
+export function LocationForm({ onCoordinates, isDisabled }: Props) {
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 	const lastUserLocation = useRef<Coordinates | null>(null);
@@ -60,7 +61,11 @@ export function LocationForm({ onCoordinates }: Props) {
 				placeholder="London"
 			/>
 
-			<button disabled={loading} type="submit" className="w-full max-w-none">
+			<button
+				disabled={loading || isDisabled}
+				type="submit"
+				className="w-full max-w-none"
+			>
 				Submit
 			</button>
 

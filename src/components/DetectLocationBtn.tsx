@@ -4,9 +4,10 @@ import { useEffect } from 'react';
 
 type Props = {
 	onCoordinates: (location: Coordinates) => void;
+	isDisabled: boolean;
 };
 
-export function DetectLocationBtn({ onCoordinates }: Props) {
+export function DetectLocationBtn({ onCoordinates, isDisabled }: Props) {
 	const { handleLocationRequest, userCoordinates, locationError } =
 		useUserLocation({ isInmediate: false });
 
@@ -21,6 +22,7 @@ export function DetectLocationBtn({ onCoordinates }: Props) {
 			<button
 				className="mx-auto w-full"
 				type="button"
+				disabled={isDisabled}
 				onClick={handleLocationRequest}
 			>
 				Detect my location 🔎

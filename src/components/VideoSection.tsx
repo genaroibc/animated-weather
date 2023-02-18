@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Coordinates } from '@/types/globals';
 import { DetectLocationBtn } from './DetectLocationBtn';
 import { useWeather } from '@/hooks/useWeather';
+import { Loader } from './Loader';
 // import { RenderedVideo } from './RenderedVideo';
 // import { isWeatherData } from '@/utils/isWeatherData';
 // import { renderVideoOnServer } from '@/services/renderVideoOnServer';
@@ -31,12 +32,14 @@ export function VideoSection() {
 	return (
 		<div className="flex gap-4 flex-col lg:flex-row items-center justify-center bg-zinc-800 p-4">
 			<div className="flex flex-col gap-4 items-stretch">
-				<LocationForm onCoordinates={setCoordinates} />
+				<LocationForm isDisabled={loading} onCoordinates={setCoordinates} />
 				<p>or</p>
-				<DetectLocationBtn onCoordinates={setCoordinates} />
+				<DetectLocationBtn
+					isDisabled={loading}
+					onCoordinates={setCoordinates}
+				/>
+				{loading && <Loader />}
 			</div>
-
-			{loading && <p>Loading....</p>}
 
 			<div className="flex flex-col">
 				{error ? (
