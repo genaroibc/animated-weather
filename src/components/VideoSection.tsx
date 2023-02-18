@@ -1,10 +1,11 @@
 import { WeatherVideoPlayer } from '@/components/WeatherVideoPlayer';
 import { LocationForm } from '@/components/LocationForm';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Coordinates } from '@/types/globals';
 import { DetectLocationBtn } from './DetectLocationBtn';
 import { useWeather } from '@/hooks/useWeather';
 import { Loader } from './Loader';
+import compare from 'just-compare';
 // import { RenderedVideo } from './RenderedVideo';
 // import { isWeatherData } from '@/utils/isWeatherData';
 // import { renderVideoOnServer } from '@/services/renderVideoOnServer';
@@ -14,6 +15,7 @@ export function VideoSection() {
 	const { error, weatherData, loading, handleGetWeather } = useWeather({
 		isInmediate: true,
 	});
+	const lastCoordinates = useRef<Coordinates | null>(null);
 	// const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
 	// useEffect(() => {
@@ -26,7 +28,12 @@ export function VideoSection() {
 	// }, [weatherData]);
 
 	useEffect(() => {
-		if (coordinates) handleGetWeather(coordinates);
+		const areSameCoords = compare(coordinates, lastCoordinates.current);
+
+		if (coordinates && !areSameCoords) {
+			handleGetWeather(coordinates);
+			lastCoordinates.current = coordinates;
+		}
 	}, [coordinates, handleGetWeather]);
 
 	return (

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { getCoordsByCityName } from '@/services/getCoordsByCityName';
 import { Coordinates } from '@/types/globals';
+import compare from 'just-compare';
 
 const LOCATION_INPUT_NAME = 'user-location';
 
@@ -12,36 +13,46 @@ type Props = {
 export function LocationForm({ onCoordinates, isDisabled }: Props) {
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
-	const lastUserLocation = useRef<Coordinates | null>(null);
+	const lastUserLocation = useRef<{
+		cityName: string;
+		coordinates: Coordinates;
+	} | null>(null);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
 		const form = e.target as HTMLFormElement;
 
-		const locationInput = form[LOCATION_INPUT_NAME]?.value;
-		const userLocation = locationInput?.trim();
+		const locationInput = form[LOCATION_INPUT_NAME];
 
-		// to avoid making unnecessary requests
-		const isNewLocation =
-			userLocation && lastUserLocation.current !== userLocation;
+		if (!locationInput) return;
 
-		if (isNewLocation) {
-			setError(null);
-			setLoading(true);
-			const response = await getCoordsByCityName(userLocation);
+		setError(null);
 
-			lastUserLocation.current = userLocation;
-			if (!response.ok) {
-				setError(response.message);
-				setLoading(false);
-				return;
-			}
+		const userCity = locationInput.value?.trim();
+		const isSameCity = compare(userCity, lastUserLocation.current?.cityName);
 
-			setLoading(false);
-			setError(null);
-			onCoordinates(response.data);
+		const lastCoordinates = lastUserLocation.current?.coordinates;
+
+		if (isSameCity && lastCoordinates) {
+			return onCoordinates(lastCoordinates);
 		}
+
+		setLoading(true);
+
+		const response = await getCoordsByCityName(userCity);
+
+		if (!response.ok) {
+			setLoading(false);
+			setError(response.message);
+			return;
+		}
+
+		const coordinates = response.data;
+		lastUserLocation.current = { cityName: userCity, coordinates };
+		setLoading(false);
+		setError(null);
+		onCoordinates(coordinates);
 	};
 
 	return (
