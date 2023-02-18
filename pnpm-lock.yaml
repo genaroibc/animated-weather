@@ -16,6 +16,7 @@ specifiers:
   css-loader: 6.7.1
   eslint: 8.14.0
   eslint-config-next: 12.3.1
+  just-compare: ^2.3.0
   next: 13.1.6
   postcss: 8.4.16
   postcss-loader: 6.2.1
@@ -36,6 +37,7 @@ dependencies:
   '@remotion/player': 3.2.31_biqbaboplfbrettd7655fr4n2y
   '@remotion/renderer': 3.2.31_biqbaboplfbrettd7655fr4n2y
   axios: 0.27.2
+  just-compare: 2.3.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2616,6 +2618,10 @@ packages:
       array-includes: 3.1.6
       object.assign: 4.1.4
     dev: true
+
+  /just-compare/2.3.0:
+    resolution: {integrity: sha512-6shoR7HDT+fzfL3gBahx1jZG3hWLrhPAf+l7nCwahDdT9XDtosB9kIF0ZrzUp5QY8dJWfQVr5rnsPqsbvflDzg==}
+    dev: false
 
   /klona/2.0.6:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}

@@ -24,6 +24,7 @@
 		"@remotion/player": "3.2.31",
 		"@remotion/renderer": "3.2.31",
 		"axios": "0.27.2",
+		"just-compare": "^2.3.0",
 		"next": "13.1.6",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
