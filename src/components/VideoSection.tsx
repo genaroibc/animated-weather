@@ -37,7 +37,7 @@ export function VideoSection() {
 	}, [coordinates, handleGetWeather]);
 
 	return (
-		<div className="flex gap-4 flex-col lg:flex-row items-center justify-center bg-zinc-800 p-4">
+		<div className="flex gap-4 flex-col lg:flex-row items-center justify-center bg-slate-900 p-4">
 			<div className="flex flex-col gap-4 items-stretch">
 				<LocationForm isDisabled={loading} onCoordinates={setCoordinates} />
 				<p>or</p>

@@ -5,17 +5,31 @@ import {
 	DURATION_IN_FRAMES,
 	FPS,
 } from '@/remotion/constants';
-import { Player } from '@remotion/player';
+import { Player, PlayerRef } from '@remotion/player';
 import { Weather } from '../types/api-reponse';
+import { useEffect, useRef } from 'react';
 
 type Props = {
 	weatherData: Weather;
 };
 
 export function WeatherVideoPlayer({ weatherData }: Props) {
+  const playerRef = useRef<PlayerRef>(null);
+
+  useEffect(() => {
+    if (playerRef.current) {
+      console.log(playerRef.current.getCurrentFrame());
+    }
+  }, []);
+
+  useEffect(() => {
+    playerRef.current?.seekTo(0)
+  }, [weatherData]);
+
 	return (
 		<div className="m-0 p-0 text-center mx-auto flex justify-center items-center rounded-md">
 			<Player
+        ref={playerRef}
 				controls
 				autoPlay
 				doubleClickToFullscreen

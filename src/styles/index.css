@@ -26,6 +26,7 @@
 
 	color: #eee;
 	background-color: var(--primary-color);
+  scrollbar-gutter: stable;
 }
 
 body {
