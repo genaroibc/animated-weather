@@ -20,7 +20,7 @@ export function DetectLocationBtn({ onCoordinates, isDisabled }: Props) {
 	return (
 		<div className="flex flex-col p-4 gap-4">
 			<button
-				className="mx-auto w-full"
+				className="w-full"
 				type="button"
 				disabled={isDisabled}
 				onClick={handleLocationRequest}

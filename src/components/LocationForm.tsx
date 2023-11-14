@@ -77,7 +77,7 @@ export function LocationForm({ onCoordinates, isDisabled }: Props) {
 				type="submit"
 				className="w-full max-w-none"
 			>
-				Submit
+				Submit 🚀
 			</button>
 
 			{error && <p className="text-red-500">{error}</p>}

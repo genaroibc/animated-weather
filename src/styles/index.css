@@ -53,7 +53,6 @@ button {
 
 	background-color: var(--secondary-color) !important;
 	transition: filter 0.3s ease, box-shadow 0.3s ease;
-	max-width: fit-content;
 }
 
 button:hover {
