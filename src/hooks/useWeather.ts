@@ -1,3 +1,4 @@
+import { defaultCoordinates } from '@/remotion/constants';
 import { getWeatherData } from '@/services/getWeatherData';
 import { Weather } from '@/types/api-reponse';
 import { Coordinates } from '@/types/globals';
@@ -67,7 +68,7 @@ export function useWeather({ isInmediate }: Params) {
 
 	useEffect(() => {
 		if (isInmediate) {
-			handleGetWeather({ longitude: 0, latitude: 0 });
+			handleGetWeather(defaultCoordinates);
 		}
 	}, [isInmediate, handleGetWeather]);
 

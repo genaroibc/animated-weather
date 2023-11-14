@@ -8,3 +8,9 @@ export const COMPOSITION_WIDTH = 500;
 
 export const TEMPERATURE_UNIT: TemperatureUnit = 'degrees';
 export const TRANSITION_DURATION = 15;
+
+// London coordinates
+export const defaultCoordinates = {
+	latitude: 51.509865,
+	longitude: -0.118092,
+};
