@@ -61,7 +61,7 @@ export function LocationForm({ onCoordinates, isDisabled }: Props) {
 			onSubmit={handleSubmit}
 		>
 			<label className="text-lg" htmlFor={LOCATION_INPUT_NAME}>
-				Your location
+				Enter a city name
 			</label>
 			<input
 				required

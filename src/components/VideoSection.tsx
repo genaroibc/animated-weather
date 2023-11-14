@@ -6,6 +6,7 @@ import { DetectLocationBtn } from './DetectLocationBtn';
 import { useWeather } from '@/hooks/useWeather';
 import { Loader } from './Loader';
 import compare from 'just-compare';
+import { Footer } from './Footer';
 // import { RenderedVideo } from './RenderedVideo';
 // import { isWeatherData } from '@/utils/isWeatherData';
 // import { renderVideoOnServer } from '@/services/renderVideoOnServer';
@@ -37,8 +38,8 @@ export function VideoSection() {
 	}, [coordinates, handleGetWeather]);
 
 	return (
-		<div className="flex gap-4 flex-col lg:flex-row items-center justify-center bg-slate-900 p-4">
-			<div className="flex flex-col gap-4 items-stretch">
+		<div className="flex gap-4 flex-col lg:flex-row justify-center p-4">
+      <div className="flex flex-col gap-4 items-stretch bg-slate-900 p-4">
 				<LocationForm isDisabled={loading} onCoordinates={setCoordinates} />
 				<p>or</p>
 				<DetectLocationBtn
@@ -46,9 +47,13 @@ export function VideoSection() {
 					onCoordinates={setCoordinates}
 				/>
 				{loading && <Loader />}
+
+        <div className="flex justify-center items-end h-full w-full">
+          <Footer />
+        </div>
 			</div>
 
-			<div className="flex flex-col">
+      <div className="flex flex-col bg-slate-900 p-4">
 				{error ? (
 					<p className="text-red-500">{error}</p>
 				) : weatherData ? (

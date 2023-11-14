@@ -1,6 +1,6 @@
 export function Footer() {
 	return (
-		<footer className="text-xl border-t-[1px] border-t-white p-8 flex flex-col gap-4">
+		<footer className="text-lg border-t-[1px] border-t-slate-300 px-2 py-8 flex flex-col gap-4 text-slate-300">
 			<p>
 				Developed by <a href="https://genarobonavita.dev">Genaro Bonavita</a>
 			</p>
