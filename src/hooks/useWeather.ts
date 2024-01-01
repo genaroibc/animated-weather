@@ -1,19 +1,28 @@
 import { defaultCoordinates } from '@/remotion/constants';
+import { getCoordsByCityName } from '@/services/getCoordsByCityName';
 import { getWeatherData } from '@/services/getWeatherData';
 import { Weather } from '@/types/api-reponse';
 import { Coordinates } from '@/types/globals';
 import { useCallback, useEffect, useState } from 'react';
 
 type Params = {
-	isInmediate: boolean;
+	isImmediate: boolean;
 };
 
-export function useWeather({ isInmediate }: Params) {
+/**
+ * Custom hook for fetching weather data.
+ * @param {Object} params - The parameters for the hook.
+ * @param {boolean} params.isImmediate - Flag indicating whether to fetch weather data immediately.
+ * @returns {Object} - An object containing the weather data, loading state, error message, and functions for fetching weather data.
+ */
+export function useWeather({ isImmediate }: Params) {
 	const [weatherData, setWeatherData] = useState<Weather | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 
-	const handleWeatherRequest = useCallback(async (coordinates: Coordinates) => {
+	const handleGetWeather = useCallback(async (coordinates: Coordinates) => {
+		console.log('FETCHING WEATHER DATA');
+
 		setLoading(true);
 		const weatherData = await getWeatherData(coordinates);
 
@@ -26,51 +35,50 @@ export function useWeather({ isInmediate }: Params) {
 		setLoading(false);
 		setError(null);
 		setWeatherData(weatherData.data);
-		window.localStorage.setItem(
-			'weatherData',
-			JSON.stringify(weatherData.data)
-		);
 	}, []);
 
-	const handleGetWeather = useCallback(
+	const getWeatherByCoordinates = useCallback(
 		async (coordinates: Coordinates) => {
-			const persistedWeatherData = JSON.parse(
-				window.localStorage.getItem('weatherData') ?? 'null'
-			);
+      console.log({ coordinates });
+      console.log("GET COORDS");
+			handleGetWeather(coordinates);
+		},
+		[handleGetWeather]
+	);
 
-			if (!persistedWeatherData && coordinates) {
-				handleWeatherRequest(coordinates);
+	const getWeatherByName = useCallback(
+		async (locationInput: string) => {
+      console.log('GET CITY NAME');
+
+			if (!locationInput) return;
+			setError(null);
+			setLoading(true);
+
+			const response = await getCoordsByCityName(locationInput);
+
+			if (!response.ok) {
+				setLoading(false);
+				setError(response.message);
 				return;
 			}
 
-			// the requested data may be already saved
-			if (persistedWeatherData && coordinates) {
-				const { lat: persistedLatitude, lon: persistedLongitude } =
-					persistedWeatherData.coord ?? {};
-
-				const { latitude, longitude } = coordinates;
-
-				const isSameWeatherData =
-					persistedLatitude === latitude && persistedLongitude === longitude;
-
-				if (!isSameWeatherData) {
-					handleWeatherRequest(coordinates);
-					return;
-				}
-
-				setWeatherData(persistedWeatherData);
-			}
-
-			setWeatherData(persistedWeatherData);
+			const coordinates = response.data;
+			getWeatherByCoordinates(coordinates);
 		},
-		[handleWeatherRequest]
+		[getWeatherByCoordinates]
 	);
 
 	useEffect(() => {
-		if (isInmediate) {
-			handleGetWeather(defaultCoordinates);
+		if (isImmediate) {
+			getWeatherByCoordinates(defaultCoordinates);
 		}
-	}, [isInmediate, handleGetWeather]);
+	}, [isImmediate, getWeatherByCoordinates]);
 
-	return { error, loading, weatherData, handleGetWeather };
+	return {
+		error,
+		loading,
+		weatherData,
+		getWeatherByCoordinates,
+		getWeatherByName,
+	};
 }

@@ -17,12 +17,6 @@ export function WeatherVideoPlayer({ weatherData }: Props) {
   const playerRef = useRef<PlayerRef>(null);
 
   useEffect(() => {
-    if (playerRef.current) {
-      console.log(playerRef.current.getCurrentFrame());
-    }
-  }, []);
-
-  useEffect(() => {
     playerRef.current?.seekTo(0)
   }, [weatherData]);
 

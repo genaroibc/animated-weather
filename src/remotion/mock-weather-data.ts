@@ -32,6 +32,6 @@ export const mockWeatherData = {
 	},
 	timezone: 0, // utc time zone
 	id: 2643743,
-	name: 'London',
+	name: 'Esteban',
 	cod: 200,
 };
